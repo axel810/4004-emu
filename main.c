@@ -455,9 +455,5 @@ int main(int argc, char **argv)
 {
 	ld_img(argv[1], 0x0);
     start(0x0);  // START PROGRAM
-	printf("%d\n", reg[15]);
-	printf("%d\n", reg[0]);
-	printf("%d\n", reg[1]);
-	printf("%d,%d\n", ram[cur_char], cur_char);
     return 0;
 }
