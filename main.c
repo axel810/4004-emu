@@ -14,8 +14,7 @@
 
 #define OPC(i) ((i)>>4)//get opcode of the instruction
 #define SR(i) ((i)&0xF)
-#define EXT(i) ((i) & 0xF)
-#define TWOS_COM(i) (((~(i)) + 0x1) & 0xF)
+#define TWOS_COM(i) (((~(i)) + 0x1) & 0xF) //
 
 bool running = true;
 bool crry = false;
@@ -410,7 +409,7 @@ io_ex_f io_ex[] = { wrm, wmp, wrr, wpm, wr0, wr1, wr2, wr3, sbm, rdm, rdr };
 void io(uint8_t i, ...) { io_ex[((i) & 0xF)](); }
 
 acc_ex_f acc_ex[] = {clb, clc, iac, cmc, cma, ral, rar, tcc, dac, tcs, stc, daa, kbp, dcl };
-void acc(uint8_t i, ...){ acc_ex[EXT(i)](); }
+void acc(uint8_t i, ...){ acc_ex[SR(i)](); }
 
 uint8_t ops[] = { 0x0, 0x1, 0x2, 0x3, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xF, 0xE };
 op_ex_f op_ex[] = { nop, jcn, fim, fin, jin, jun, jms, inc, isz, add, sub, ld, xch, bbl, ldm, acc, io };
@@ -466,8 +465,5 @@ int main(int argc, char **argv)
 	ld_img(argv[1], 0x0);
     start(0x0);  // START PROGRAM
     print_cpu_state(stack, crry, test, reg);
-    //print_mem(0,0,ram);
-    //print_mem(0,1,ram);
-    //print_rom_outputs(cur_rom_ioport);
     return 0;
 }

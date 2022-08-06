@@ -4,11 +4,6 @@
 
 #include "4004_dbg.h"
 
-char *to_binary(int num)
-{
-	return 0;
-}
-
 void print_cpu_state(uint16_t *stack, bool carry_flg, bool test_flg, uint8_t *regs)
 {
 	printf("*******************************************\n");
