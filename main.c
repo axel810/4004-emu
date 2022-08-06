@@ -25,7 +25,7 @@ typedef void (*acc_ex_f)(); //function pointer for instructions affecting only a
 typedef void (*io_ex_f)(); //function pointer for input/output instructions
 
 enum regs { R0 = 0, R1, R2, R3, R4, R5, R6, R7, R8, R9, RA, 
-           RB, RC, RD, RE, RF, ACC, RCNT };
+                RB, RC, RD, RE, RF, ACC, RCNT };
 
 int sp = 0; //stack pointer
 int cur_bank = 0;
@@ -52,8 +52,8 @@ void nop(uint8_t i, ...) { running = false; } //i is unused
 
 void jcn(uint8_t msb, uint8_t lsb)
 {
-	for(int cnt = 0; cnt < 3; cnt++)
-	{
+    for(int cnt = 0; cnt < 3; cnt++)
+    {
 		if (msb & (1 << cnt))
 		{
 			if(msb & 0x8)
@@ -150,7 +150,7 @@ void fin(uint8_t i, ...)
 		reg[pars[buf] + 1] = ((mr(addr)) & 0xF);
 	}	
 	else
-	    jin(i);
+        jin(i);
 }
 
 void jun(uint8_t msb, uint8_t lsb, ...)
@@ -197,7 +197,7 @@ void isz(uint8_t msb, uint8_t lsb)
 				rpc |= (1 << bit);
 			else
 				rpc &= ~(1 << bit);
-		}
+        }
 	}
 	else
 		return;
@@ -207,8 +207,8 @@ void add(uint8_t i, ...)
 {
 	if((reg[ACC] += reg[SR(i)] + crry) > FOUR_BIT_MAX)
 	{
-		 reg[ACC] &= ~(1 << 4);
-		 crry = true;
+        reg[ACC] &= ~(1 << 4);
+        crry = true;
 	}
 	else
 		crry = false;
@@ -460,9 +460,9 @@ void ld_img(char *fname, uint16_t offset)
 
 int main(int argc, char **argv)
 {
-	reg[RE] = 9;
-	reg[RA] = 2;
-	ld_img(argv[1], 0x0);
+    reg[RE] = 9;
+    reg[RA] = 2;
+    ld_img(argv[1], 0x0);
     start(0x0);  // START PROGRAM
     print_cpu_state(stack, crry, test, reg);
     return 0;
