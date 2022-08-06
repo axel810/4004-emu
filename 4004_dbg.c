@@ -39,11 +39,6 @@ void print_mem(int bank,  int chip, uint8_t *mem)
 	}
 }
 
-void print_status()
-{
-
-}
-
 void print_ram_outputs(uint8_t *ports, int port)
 {
 	printf("0x%X\n",ports[port]);
@@ -52,10 +47,4 @@ void print_ram_outputs(uint8_t *ports, int port)
 void print_rom_outputs(int port)
 {
 	printf("0x%X\n",port);
-}
-
-
-void print_mem_nozero(uint8_t *mem)
-{
-
 }
